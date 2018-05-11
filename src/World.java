@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 public abstract class World extends Pane {
     private AnimationTimer timer;
-
     public World() {
         timer = new AnimationTimer() {
             @Override

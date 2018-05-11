@@ -14,13 +14,14 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(bp, 2000, 2000));
         primaryStage.show();
-        GameWorld gameWorld = new GameWorld();
+        GameWorld gameWorld = new GameWorld(2000);
         bp.setCenter(gameWorld);
         Obstacles ob = new Obstacles();
         ob.setImage(new Image("AsteroidHuge.png"));
+
+
         gameWorld.getChildren().addAll(ob);
         gameWorld.start();
-
 
     }
 
