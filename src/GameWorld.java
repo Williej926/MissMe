@@ -40,7 +40,7 @@ public class GameWorld extends World{
             double randY = Math.random()*getHeight();
             boolean side = Math.random()<0.5;
             if(side) {
-                
+
             }
             //do something
             prev = now;
