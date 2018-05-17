@@ -23,7 +23,6 @@ public class Main extends Application {
         ob.setImage(new Image("AsteroidHuge.png"));
         ob.setX(100);
         Image space = new Image("space-ship.gif");
-        ImageView img = new ImageView(space);
         Player player = new Player();
         player.setImage(space);
 
