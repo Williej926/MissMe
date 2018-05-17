@@ -11,12 +11,10 @@ public class GameWorld extends World{
     }
     public void act(long now) {
 
-        System.out.println(getChildren());
-        System.out.println("Width: " + getWidth());
+
         ArrayList<Node> deletes = new ArrayList<Node>();
         for (Node n : getChildren()) {
             if (n instanceof Actor){
-                System.out.println("X: " + ((Actor) n).getX());
                 if (((Actor) n).getX() > getWidth()) {
                     //System.out.println("deleted");
                     //((Actor) n).getWorld().remove(((Actor) n));
@@ -29,11 +27,18 @@ public class GameWorld extends World{
                     deletes.add(n);
                 }
             }
+            if(n instanceof Player) {
+                for(Actor d : ((Player) n).getDelete()) {
+                    deletes.add(d);
+                }
+            }
+
         }
         for(Node n:deletes) {
             if(n instanceof Actor) {
-                System.out.println("Deleted");
-                ((Actor) n).getWorld().remove(((Actor) n));
+                if(n != null) {
+                    ((Actor) n).getWorld().remove(((Actor) n));
+                }
             }
         }
         if (now-prev>=diff) {

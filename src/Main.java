@@ -4,6 +4,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -20,17 +21,22 @@ public class Main extends Application {
         bp.setCenter(gameWorld);
         Obstacles ob = new Obstacles();
         ob.setImage(new Image("AsteroidHuge.png"));
+        ob.setX(100);
+        Image space = new Image("space-ship.gif");
+        ImageView img = new ImageView(space);
         Player player = new Player();
-        player.setImage(new Image("AsteroidHuge.png"));
+        player.setImage(space);
+
         gameWorld.setOnMouseMoved(new EventHandler<MouseEvent>() {
                                       @Override
                                       public void handle(MouseEvent event) {
-                                          player.setX(event.getX());
-                                          player.setY(event.getY());
+                                          player.setX(event.getX() - player.getImage().getWidth()/2);
+                                          player.setY(event.getY() - player.getImage().getHeight()/2);
+
                                       }
                                   });
 
-                gameWorld.getChildren().addAll(ob,player);
+        gameWorld.getChildren().addAll(ob,player);
         gameWorld.start();
 
     }
