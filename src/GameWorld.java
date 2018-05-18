@@ -4,6 +4,7 @@ import java.util.List;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Circle;
 import jdk.nashorn.internal.ir.debug.ASTWriter;
 
 public class GameWorld extends World{
@@ -54,7 +55,11 @@ public class GameWorld extends World{
             Obstacles ob = new Obstacles();
             ob.setImage(new Image("AsteroidHuge.png"));
             ob.setX(0);
-            ob.setY(Math.random()*(this.getHeight()/2));
+            ob.setY(Math.random()*(this.getHeight()/1.35));
+//            Circle c = new Circle();
+//            c.setRadius(10);
+//            c.setCenterX(0);
+//            c.setCenterY((Math.random()*(this.getHeight()))-this.getHeight()/2);
             this.getChildren().add(ob);
             //do something
             prev = now;
