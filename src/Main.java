@@ -22,6 +22,8 @@ public class Main extends Application {
         Obstacles ob = new Obstacles();
         ob.setImage(new Image("AsteroidHuge.png"));
         ob.setX(100);
+        InvinciblePowerUp ipu = new InvinciblePowerUp();
+        ipu.setX(100);
         Image space = new Image("space-ship.gif");
         Player player = new Player();
         player.setImage(space);

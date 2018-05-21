@@ -13,9 +13,13 @@ public class GameWorld extends World{
     public GameWorld(int width) {
         this.setWidth(width);
     }
+    
+    private static int counter = 0;
+    
     public void act(long now) {
 
-
+    	//System.out.println(counter);
+    	
         ArrayList<Node> deletes = new ArrayList<Node>();
         for (Node n : getChildren()) {
             if (n instanceof Actor){
@@ -52,17 +56,31 @@ public class GameWorld extends World{
 
 
             }
-            Obstacles ob = new Obstacles();
-            ob.setImage(new Image("AsteroidHuge.png"));
-            ob.setX(0);
-            ob.setY(Math.random()*(this.getHeight()/1.35));
-//            Circle c = new Circle();
-//            c.setRadius(10);
-//            c.setCenterX(0);
-//            c.setCenterY((Math.random()*(this.getHeight()))-this.getHeight()/2);
-            this.getChildren().add(ob);
+            
             //do something
             prev = now;
+            
+            //every 10 asteroids one powerUp
+            counter++;
+           
+            if(counter==10) {
+            	InvinciblePowerUp ipu = new InvinciblePowerUp();
+            	ipu.setX(0);
+            	ipu.setY(Math.random()*(this.getHeight()/1.35));
+            	this.getChildren().add(ipu);
+            	counter = 0;
+            }
+            else {
+            	Obstacles ob = new Obstacles();
+                ob.setImage(new Image("AsteroidHuge.png"));
+                ob.setX(0);
+                ob.setY(Math.random()*(this.getHeight()/1.35));
+//                Circle c = new Circle();
+//                c.setRadius(10);
+//                c.setCenterX(0);
+//                c.setCenterY((Math.random()*(this.getHeight()))-this.getHeight()/2);
+                this.getChildren().add(ob);
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ public class Obstacles extends Actor{
     }
     @Override
     public void act(long now) {
-        System.out.println("X: " + getX() + " Y: " + getY());
+        //System.out.println("X: " + getX() + " Y: " + getY());
         this.setRotate(this.getRotate() + 5);
         this.move(5,0);
 
