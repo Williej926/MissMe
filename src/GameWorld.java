@@ -49,7 +49,7 @@ public class GameWorld extends World{
                 }
             }
         }
-        if (now-prev>=diff) {
+        if (now-prev>=diff/2.3) {
             double randY = Math.random()*getHeight();
             boolean side = Math.random()<0.5;
             if(side) {
@@ -72,7 +72,7 @@ public class GameWorld extends World{
             }
             else {
             	Obstacles ob = new Obstacles();
-                ob.setImage(new Image("AsteroidHuge.png"));
+                ob.setImage(new Image("circletrash.png"));
                 ob.setX(0);
                 ob.setY(Math.random()*(this.getHeight()/1.35));
 //                Circle c = new Circle();

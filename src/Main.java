@@ -20,7 +20,7 @@ public class Main extends Application {
         GameWorld gameWorld = new GameWorld(2000);
         bp.setCenter(gameWorld);
         Obstacles ob = new Obstacles();
-        ob.setImage(new Image("AsteroidHuge.png"));
+        ob.setImage(new Image("circletrash.png"));
         ob.setX(100);
         InvinciblePowerUp ipu = new InvinciblePowerUp();
         ipu.setX(100);
