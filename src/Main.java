@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         BorderPane bp = new BorderPane();
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("Obstacle Dodger");
         primaryStage.setScene(new Scene(bp, 2000, 2000));
         primaryStage.show();
         GameWorld gameWorld = new GameWorld(2000);
