@@ -1,3 +1,4 @@
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -58,6 +59,17 @@ public class Player extends Actor{
 					PowerUp.setDX(PowerUp.getDX()/2);
 					delete.add(obstacle);
 				}
+				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
+					System.out.println("I kill all the bad guys h33h33");
+					timeSlowedCounter = 0;
+					timeSlowedCounter += 700;
+					delete.add(obstacle);
+					for(Node a: getWorld().getChildren()) {
+						if(((Actor) a).getClass() == Obstacles.class) {
+							delete.add((Actor) a);
+						}
+					}
+				}
 
 			}
 			else {
@@ -82,6 +94,17 @@ public class Player extends Actor{
 					Obstacles.setDX(Obstacles.getDX()/2);
 					PowerUp.setDX(PowerUp.getDX()/2);
 					delete.add(obstacle);
+				}
+				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
+					System.out.println("I kill all the bad guys h33h33");
+					timeSlowedCounter = 0;
+					timeSlowedCounter += 700;
+					delete.add(obstacle);
+					for(Node a: getWorld().getChildren()) {
+						if(((Actor) a).getClass() == Obstacles.class) {
+							delete.add((Actor) a);
+						}
+					}
 				}
 			}
 

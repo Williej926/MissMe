@@ -68,17 +68,24 @@ public class GameWorld extends World{
 
 			if(counter==10) {
 				Random rand = new Random();
-				if(rand.nextInt(100)%2==0) {
+				int a = rand.nextInt(3);
+				if(a==0) {
 					TimeSlowPowerUp tspu = new TimeSlowPowerUp();
 					tspu.setX(0);
 					tspu.setY(Math.random()*(this.getHeight()/1.35));
 					this.getChildren().add(tspu);
 				}
-				else {
+				else if(a==1){
 					InvinciblePowerUp ipu = new InvinciblePowerUp();
 					ipu.setX(0);
 					ipu.setY(Math.random()*(this.getHeight()/1.35));
 					this.getChildren().add(ipu);
+				}
+				else if(a==2){
+					DestroyObstaclesPowerUp dopu = new DestroyObstaclesPowerUp();
+					dopu.setX(0);
+					dopu.setY(Math.random()*(this.getHeight()/1.35));
+					this.getChildren().add(dopu);
 				}
 				counter = 0;
 			}
