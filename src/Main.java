@@ -6,6 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import java.util.Calendar;
@@ -16,6 +19,7 @@ public class Main extends Application {
         BorderPane bp = new BorderPane();
         primaryStage.setTitle("Obstacle Dodger");
         primaryStage.setScene(new Scene(bp, 2000, 2000));
+        bp.setBackground(new Background(new BackgroundImage(new Image("background.jpg"), null, null, null, null)));
         primaryStage.show();
         GameWorld gameWorld = new GameWorld(2000);
         bp.setCenter(gameWorld);
