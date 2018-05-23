@@ -60,8 +60,6 @@ public class Player extends Actor{
 				}
 				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
 					System.out.println("I kill all the bad guys h33h33");
-					timeSlowedCounter = 0;
-					timeSlowedCounter += 700;
 					delete.add(obstacle);
 					for(Node a: getWorld().getChildren()) {
 						if(((Actor) a).getClass() == Obstacles.class) {
@@ -96,8 +94,6 @@ public class Player extends Actor{
 				}
 				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
 					System.out.println("I kill all the bad guys h33h33");
-					timeSlowedCounter = 0;
-					timeSlowedCounter += 700;
 					delete.add(obstacle);
 					for(Node a: getWorld().getChildren()) {
 						if(((Actor) a).getClass() == Obstacles.class) {

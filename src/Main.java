@@ -34,7 +34,7 @@ public class Main extends Application {
         Player player = new Player();
         player.setImage(space);
 
-        Text t = new Text("Amount of\nlives left:" + player.numLives());
+        //Text t = new Text("Amount of\nlives left:" + player.numLives());
         
         
         gameWorld.setOnMouseMoved(new EventHandler<MouseEvent>() {
@@ -46,7 +46,7 @@ public class Main extends Application {
                                       }
                                   });
 
-        gameWorld.getChildren().addAll(player, t);
+        gameWorld.getChildren().addAll(player);
         gameWorld.start();
 
     }
