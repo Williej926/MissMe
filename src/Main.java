@@ -35,8 +35,8 @@ public class Main extends Application {
         player.setImage(space);
 
         //Text t = new Text("Amount of\nlives left:" + player.numLives());
-        
-        
+
+
         gameWorld.setOnMouseMoved(new EventHandler<MouseEvent>() {
                                       @Override
                                       public void handle(MouseEvent event) {

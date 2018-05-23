@@ -1,8 +1,8 @@
-public class Obstacles extends Actor{
+public class Obstacles extends Circle{
     private static double moveDistance = 5;
     private static final double ORIGINAL_DX = 5;
 
-    
+
 	public Obstacles() {
         this.setRotate(0);
         this.setScaleX(0.5);
@@ -23,15 +23,15 @@ public class Obstacles extends Actor{
         this.move(moveDistance,0);
 
     }
-    
+
     public static void setDX(double x) {
     	moveDistance = x;
     }
-    
+
     public static double getDX() {
     	return  moveDistance;
     }
-    
+
     public static double returnOriginal() {
     	return ORIGINAL_DX;
     }
