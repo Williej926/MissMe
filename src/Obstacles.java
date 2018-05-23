@@ -1,3 +1,5 @@
+import javafx.scene.shape.Circle;
+
 public class Obstacles extends Circle{
     private static double moveDistance = 5;
     private static final double ORIGINAL_DX = 5;
@@ -11,16 +13,15 @@ public class Obstacles extends Circle{
     }
     public Obstacles(Double angle,Double x, Double y) {
             this.setRotate(angle);
-            this.setX(x);
-            this.setY(y);
+            this.setCenterX(x);
+            this.setCenterY(y);
             this.setScaleX(0.5);
     		this.setScaleY(0.5);
     }
-    @Override
     public void act(long now) {
         //System.out.println("X: " + getX() + " Y: " + getY());
         this.setRotate(this.getRotate() + moveDistance);
-        this.move(moveDistance,0);
+        this.setCenterX(getCenterX()+getDX());
 
     }
 

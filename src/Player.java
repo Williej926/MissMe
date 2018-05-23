@@ -13,7 +13,7 @@ public class Player extends Actor{
 	
 	private int amountOfLives = 3;
 
-	ArrayList<Actor> delete =  new ArrayList<>();
+	ArrayList<Node> delete =  new ArrayList<>();
 	@Override
 	public void act(long now) {		
 		if(InvincibleCounter==0) {
@@ -33,7 +33,7 @@ public class Player extends Actor{
 		timeSlowedCounter--;
 		
 		delete = new ArrayList<>();
-		Actor obstacle  = this.getOneIntersectingObject(Actor.class);
+		Node obstacle  = this.getOneIntersectingObject(Node.class);
 		if(obstacle != null) {
 			if(isInvincible) {
 				if(obstacle.getClass() == Obstacles.class) {
@@ -62,8 +62,8 @@ public class Player extends Actor{
 					System.out.println("I kill all the bad guys h33h33");
 					delete.add(obstacle);
 					for(Node a: getWorld().getChildren()) {
-						if(((Actor) a).getClass() == Obstacles.class) {
-							delete.add((Actor) a);
+						if(((Object) a).getClass() == Obstacles.class) {
+							delete.add(a);
 						}
 					}
 				}
@@ -96,8 +96,8 @@ public class Player extends Actor{
 					System.out.println("I kill all the bad guys h33h33");
 					delete.add(obstacle);
 					for(Node a: getWorld().getChildren()) {
-						if(((Actor) a).getClass() == Obstacles.class) {
-							delete.add((Actor) a);
+						if(((Node) a).getClass() == Obstacles.class) {
+							delete.add(a);
 						}
 					}
 				}
@@ -106,7 +106,7 @@ public class Player extends Actor{
 		}
 	}
 
-	public ArrayList<Actor> getDelete() {
+	public ArrayList<Node> getDelete() {
 		return delete;
 
 	}

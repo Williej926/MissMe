@@ -6,7 +6,6 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.shape.Circle;
-import jdk.nashorn.internal.ir.debug.ASTWriter;
 
 public class GameWorld extends World{
 	private static long prev = 0;
@@ -38,8 +37,21 @@ public class GameWorld extends World{
 					deletes.add(n);
 				}
 			}
+			if (n instanceof Obstacles){
+				if (((Obstacles) n).getCenterX() > getWidth()) {
+					//System.out.println("deleted");
+					//((Actor) n).getWorld().remove(((Actor) n));
+					deletes.add(n);
+				} else if (((Obstacles) n).getCenterX() < 0) {
+					//System.out.println("deleted");
+					//((Actor) n).getWorld().remove(((Actor) n));
+
+
+					deletes.add(n);
+				}
+			}
 			if(n instanceof Player) {
-				for(Actor d : ((Player) n).getDelete()) {
+				for(Node d : ((Player) n).getDelete()) {
 					deletes.add(d);
 				}
 			}
@@ -50,6 +62,9 @@ public class GameWorld extends World{
 				if(n != null) {
 					((Actor) n).getWorld().remove(((Actor) n));
 				}
+			}
+			if(n instanceof Obstacles) {
+				remove(n);
 			}
 		}
 		if (now-prev>=diff/factor) {
@@ -91,9 +106,9 @@ public class GameWorld extends World{
 			}
 			else {
 				Obstacles ob = new Obstacles();
-				ob.setImage(new Image("circletrash.png"));
-				ob.setX(0);
-				ob.setY(Math.random()*(this.getHeight()/1.35));
+				ob.setRadius(50);
+				ob.setCenterX(20);
+				ob.setCenterY(Math.random()*(this.getHeight()/1.35));
 				//                Circle c = new Circle();
 				//                c.setRadius(10);
 				//                c.setCenterX(0);

@@ -33,7 +33,7 @@ public abstract class Actor extends  ImageView{
         return list;
 
     }
-    public <A extends Actor> A getOneIntersectingObject(java.lang.Class<A> cls) {
+    public <A extends Node> A getOneIntersectingObject(java.lang.Class<A> cls) {
         for (Node n: getWorld().getChildren()) {
             if (!n.equals(this) && cls.isInstance(n)) {
                 if (n.getBoundsInLocal().intersects(getBoundsInParent())) {

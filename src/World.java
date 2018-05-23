@@ -15,6 +15,9 @@ public abstract class World extends Pane {
                     if(n instanceof Actor) {
                         ((Actor) n).act(now);
                     }
+                    if(n instanceof Obstacles) {
+                        ((Obstacles) n).act(now);
+                    }
                 }
 
             }
@@ -30,10 +33,10 @@ public abstract class World extends Pane {
         }
         return list;
     }
-    public void add(Actor actor) {
+    public void add(Node actor) {
         getChildren().addAll(actor);
     }
-    public void remove(Actor actor) {
+    public void remove(Node actor) {
         getChildren().remove(actor);
     }
     public void start() {
