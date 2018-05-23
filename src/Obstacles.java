@@ -1,3 +1,6 @@
+import javafx.scene.effect.ImageInput;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 public class Obstacles extends Circle{
@@ -9,6 +12,7 @@ public class Obstacles extends Circle{
         this.setRotate(0);
         this.setScaleX(0.5);
 		this.setScaleY(0.5);
+		this.setFill(new ImagePattern(new Image("AsteroidHuge.png")));
 
     }
     public Obstacles(Double angle,Double x, Double y) {

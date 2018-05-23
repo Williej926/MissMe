@@ -106,7 +106,7 @@ public class GameWorld extends World{
 			}
 			else {
 				Obstacles ob = new Obstacles();
-				ob.setRadius(50);
+				ob.setRadius(100);
 				ob.setCenterX(20);
 				ob.setCenterY(Math.random()*(this.getHeight()/1.35));
 				//                Circle c = new Circle();
