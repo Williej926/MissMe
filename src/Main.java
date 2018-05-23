@@ -10,6 +10,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.Calendar;
 public class Main extends Application {
@@ -29,12 +30,13 @@ public class Main extends Application {
 //        InvinciblePowerUp ipu = new InvinciblePowerUp();
 //        ipu.setX(100);
         Image space = new Image("space-ship.gif");
-        Heart heart1 = new Heart();
-        heart1.setLayoutX(500);
-        heart1.setLayoutY(500);
+
         Player player = new Player();
         player.setImage(space);
 
+        Text t = new Text("Amount of\nlives left:" + player.numLives());
+        
+        
         gameWorld.setOnMouseMoved(new EventHandler<MouseEvent>() {
                                       @Override
                                       public void handle(MouseEvent event) {
@@ -44,7 +46,7 @@ public class Main extends Application {
                                       }
                                   });
 
-        gameWorld.getChildren().addAll(player, heart1);
+        gameWorld.getChildren().addAll(player, t);
         gameWorld.start();
 
     }
