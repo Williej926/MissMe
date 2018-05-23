@@ -12,11 +12,14 @@ public class Player extends Actor{
 	private int timeSlowedCounter = 0;
 	
 	private int amountOfLives = 3;
-	boolean changer = true;
+	private static boolean isHit;
 
 	ArrayList<Actor> delete =  new ArrayList<>();
 	@Override
 	public void act(long now) {
+		
+		isHit = false;
+		
 		if(InvincibleCounter==0) {
 			System.out.println("Not invincible");
 			isInvincible = false;
@@ -76,6 +79,7 @@ public class Player extends Actor{
 				if(obstacle.getClass() == Obstacles.class) {
 					System.out.println("-1 Life");
 					amountOfLives--;
+					isHit=true;
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == InvinciblePowerUp.class) {
@@ -121,5 +125,9 @@ public class Player extends Actor{
 			return true;
 		}
 		return false;
+	}
+	
+	public static boolean gotHit() {
+		return isHit;
 	}
 }

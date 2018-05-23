@@ -23,12 +23,15 @@ public class Main extends Application {
         primaryStage.show();
         GameWorld gameWorld = new GameWorld(2000);
         bp.setCenter(gameWorld);
-        Obstacles ob = new Obstacles();
-        ob.setImage(new Image("circletrash.png"));
-        ob.setX(100);
-        InvinciblePowerUp ipu = new InvinciblePowerUp();
-        ipu.setX(100);
+//        Obstacles ob = new Obstacles();
+//        ob.setImage(new Image("circletrash.png"));
+//        ob.setX(100);
+//        InvinciblePowerUp ipu = new InvinciblePowerUp();
+//        ipu.setX(100);
         Image space = new Image("space-ship.gif");
+        Heart heart1 = new Heart();
+        heart1.setLayoutX(500);
+        heart1.setLayoutY(500);
         Player player = new Player();
         player.setImage(space);
 
@@ -41,7 +44,7 @@ public class Main extends Application {
                                       }
                                   });
 
-        gameWorld.getChildren().addAll(ob,player);
+        gameWorld.getChildren().addAll(player, heart1);
         gameWorld.start();
 
     }
