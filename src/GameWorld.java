@@ -12,6 +12,7 @@ public class GameWorld extends World{
 	private static double factor = 2.3;
 	private static final double ORIGINAL_FACTOR = 2.3;
 	private static long diff = (long) (1e9);
+	private int points = 0;
 	public GameWorld(int width) {
 		this.setWidth(width);
 	}
@@ -46,7 +47,7 @@ public class GameWorld extends World{
 					//System.out.println("deleted");
 					//((Actor) n).getWorld().remove(((Actor) n));
 
-
+					points++;
 					deletes.add(n);
 				}
 			}
@@ -129,4 +130,8 @@ public class GameWorld extends World{
 	public static double getOrignalFactor() {
 		return ORIGINAL_FACTOR;
 	}
+	public int getPoints() {
+		return this.points;
+	}
+	
 }

@@ -29,7 +29,7 @@ public class Main extends Application {
 //        ob.setX(100);
 //        InvinciblePowerUp ipu = new InvinciblePowerUp();
 //        ipu.setX(100);
-        Image space = new Image("space-ship.gif");
+        Image space = new Image("williejiang.gif");
 
         Player player = new Player();
         player.setImage(space);

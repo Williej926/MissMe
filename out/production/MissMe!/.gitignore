@@ -1,20 +1,28 @@
-/PowerUp.class
-/InvinciblePowerUp.class
-/1425568247090 (2).png
-/InvinciblePowerUpImage.png
-/circletrash.png
-/ezgif.com-gif-maker.gif
-/shield-ship.gif
-/TimeSlowPowerUp.class
-/1425569023892 (1).png
-/TimeSlowPowerUpImage.png
+/Actor.class
+/AsteroidHuge.png
+/Controller.class
 /DestroyObstaclesPowerUp.class
-/1425568833219 (1).png
 /DestroyObstaclesPowerUpImage.png
-/background.jpg
+/GameWorld.class
+/InvinciblePowerUp.class
+/InvinciblePowerUpImage.png
+/LILY1.jpg
 /Main$1.class
-/LifeBar.class
-/Heart.class
+/Main.class
+/Obstacles.class
+/Player.class
+/PowerUp.class
+/TimeSlowPowerUp.class
+/TimeSlowPowerUpImage.png
+/World$1.class
+/World.class
+/background.jpg
+/circletrash.png
 /filledHeart.PNG
+/shield-ship.gif
+/space-ship.gif
 /unfilledHeart.PNG
-/Main$2.class
+/space-ship.png
+/kevinliu.png
+/williejiang.gif
+/shieldspaceship.gif
