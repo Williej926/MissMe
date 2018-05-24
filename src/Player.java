@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -108,7 +109,11 @@ public class Player extends Actor{
 
 		}
 		if(this.amountOfLives <= 0) {
-			System.exit(0);
+			Image gameOver = new Image("gameOver.png");
+			ImageView iv = new ImageView(gameOver);
+			
+			getWorld().getChildren().add(iv);
+			
 		}
 	}
 
