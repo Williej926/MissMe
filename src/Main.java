@@ -34,19 +34,21 @@ public class Main extends Application {
         Player player = new Player();
         player.setImage(space);
 
-        //Text t = new Text("Amount of\nlives left:" + player.numLives());
+        Text t = new Text("Amount of\nlives left: " + player.numLives());
 
 
         gameWorld.setOnMouseMoved(new EventHandler<MouseEvent>() {
                                       @Override
                                       public void handle(MouseEvent event) {
+                                    	  
                                           player.setX(event.getX() - player.getImage().getWidth()/2);
                                           player.setY(event.getY() - player.getImage().getHeight()/2);
-
+                                          t.setX(event.getX() - player.getImage().getWidth()/3);
+                                          t.setY(player.getY() + 1.2*player.getImage().getHeight());
                                       }
                                   });
 
-        gameWorld.getChildren().addAll(player);
+        gameWorld.getChildren().addAll(player, t);
         gameWorld.start();
 
     }

@@ -25,7 +25,7 @@ public abstract class Actor extends  ImageView{
         ArrayList<A> list = new ArrayList<A>();
         for (Node n: getWorld().getChildren()) {
             if (!n.equals(this) && cls.isInstance(n)) {
-                if (n.getBoundsInLocal().intersects(getBoundsInParent())) {
+                if (n.getBoundsInParent().intersects(getBoundsInParent())) {
                     list.add(cls.cast(n));
                 }
             }

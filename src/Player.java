@@ -4,6 +4,8 @@ import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
+
 public class Player extends Actor{
 
 	private boolean isInvincible = false;
