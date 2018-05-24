@@ -3,18 +3,28 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.Calendar;
 public class Main extends Application {
 
+	public static Text t;
+	
     @Override
     public void start(Stage primaryStage) throws Exception{
         BorderPane bp = new BorderPane();
@@ -34,21 +44,27 @@ public class Main extends Application {
         Player player = new Player();
         player.setImage(space);
 
-        Text t = new Text("Amount of\nlives left: " + player.numLives());
-
+        t = new Text("Amount of\nlives left: " + player.numLives());
+        t.setFill(Color.WHITE);
+        
+        Rectangle rect = new Rectangle(60, 33);
+        rect.setFill(Color.BLACK);
 
         gameWorld.setOnMouseMoved(new EventHandler<MouseEvent>() {
+        
                                       @Override
                                       public void handle(MouseEvent event) {
                                     	  
                                           player.setX(event.getX() - player.getImage().getWidth()/2);
                                           player.setY(event.getY() - player.getImage().getHeight()/2);
-                                          t.setX(event.getX() - player.getImage().getWidth()/3);
-                                          t.setY(player.getY() + 1.2*player.getImage().getHeight());
+                                          rect.setLayoutX(event.getX() - player.getImage().getWidth()/2.8);
+                                          rect.setLayoutY(player.getY() + 1.1*player.getImage().getHeight());
+                                          t.setLayoutX(event.getX() - player.getImage().getWidth()/3);
+                                          t.setLayoutY(player.getY() + 1.2*player.getImage().getHeight());
                                       }
                                   });
 
-        gameWorld.getChildren().addAll(player, t);
+        gameWorld.getChildren().addAll(player, rect, t);
         gameWorld.start();
 
     }
@@ -58,4 +74,7 @@ public class Main extends Application {
         launch(args);
     }
 
+    public static Text getT() {
+    	return t;
+    }
 }
