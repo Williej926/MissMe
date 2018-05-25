@@ -24,7 +24,7 @@ import java.util.Calendar;
 public class Main extends Application {
 
 	public static Text t;
-	
+		
     @Override
     public void start(Stage primaryStage) throws Exception{
         BorderPane bp = new BorderPane();
@@ -66,10 +66,7 @@ public class Main extends Application {
 
         gameWorld.getChildren().addAll(player, rect, t);
         gameWorld.start();
-
-    }
-
-
+    }    
     public static void main(String[] args) {
         launch(args);
     }

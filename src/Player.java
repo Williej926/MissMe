@@ -1,3 +1,4 @@
+import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -17,6 +18,8 @@ public class Player extends Actor{
 	private int amountOfLives = 3;
 
 	ArrayList<Node> delete =  new ArrayList<>();
+	ArrayList<Node> add =  new ArrayList<>();
+
 	@Override
 	public void act(long now) {		
 		if(InvincibleCounter==0) {
@@ -36,6 +39,7 @@ public class Player extends Actor{
 		timeSlowedCounter--;
 
 		delete = new ArrayList<>();
+		add = new ArrayList<>();
 		Node obstacle  = this.getOneIntersectingObject(Node.class);
 		if(obstacle != null) {
 			if(isInvincible) {
@@ -108,11 +112,9 @@ public class Player extends Actor{
 			}
 
 		}
-		if(this.amountOfLives <= 0) {
-			Image gameOver = new Image("gameOver.png");
-			ImageView iv = new ImageView(gameOver);
-			
-			getWorld().getChildren().add(iv);
+		if(this.amountOfLives == 0) {
+			//Platform.exit();
+		
 			
 		}
 	}
@@ -120,6 +122,9 @@ public class Player extends Actor{
 	public ArrayList<Node> getDelete() {
 		return delete;
 
+	}
+	public ArrayList<Node> getAdd(){
+		return add;
 	}
 
 	public boolean isDead() {

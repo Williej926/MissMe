@@ -55,6 +55,9 @@ public class GameWorld extends World{
 				for(Node d : ((Player) n).getDelete()) {
 					deletes.add(d);
 				}
+				for(Node d : ((Player) n).getAdd()) {
+					this.getChildren().add(d);
+				}
 			}
 
 		}
@@ -134,4 +137,7 @@ public class GameWorld extends World{
 		return this.points;
 	}
 	
+	public void gameOver() {
+	}
+	}
 }
