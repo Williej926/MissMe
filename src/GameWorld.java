@@ -1,3 +1,4 @@
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -5,6 +6,7 @@ import java.util.Random;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 
 public class GameWorld extends World{
@@ -12,6 +14,8 @@ public class GameWorld extends World{
 	private static double factor = 2.3;
 	private static final double ORIGINAL_FACTOR = 2.3;
 	private static long diff = (long) (1e9);
+	private int points = 0;
+	private Player player;
 	public GameWorld(int width) {
 		this.setWidth(width);
 	}
@@ -46,7 +50,7 @@ public class GameWorld extends World{
 					//System.out.println("deleted");
 					//((Actor) n).getWorld().remove(((Actor) n));
 
-
+					points++;
 					deletes.add(n);
 				}
 			}
@@ -54,9 +58,13 @@ public class GameWorld extends World{
 				for(Node d : ((Player) n).getDelete()) {
 					deletes.add(d);
 				}
+				for(Node d : ((Player) n).getAdd()) {
+					this.getChildren().add(d);
+				}
 			}
 
 		}
+
 		for(Node n:deletes) {
 			if(n instanceof Actor) {
 				if(n != null) {
@@ -66,6 +74,9 @@ public class GameWorld extends World{
 			if(n instanceof Obstacles) {
 				remove(n);
 			}
+		}
+		if(player.isDead()) {
+			getChildren().add(new ImageView(new Image("gameOver.png")));
 		}
 		if (now-prev>=diff/factor) {
 			double randY = Math.random()*getHeight();
@@ -129,4 +140,15 @@ public class GameWorld extends World{
 	public static double getOrignalFactor() {
 		return ORIGINAL_FACTOR;
 	}
+	public int getPoints() {
+		return this.points;
+	}
+	
+	public void gameOver() {
+		getChildren().add(new ImageView(new Image("gameOver.png")));
+	}
+	public void setPlayer(Player p) {
+		player = p;
+	}
+
 }
