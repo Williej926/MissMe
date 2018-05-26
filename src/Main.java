@@ -1,26 +1,15 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import java.util.Calendar;
 public class Main extends Application {
 
 	public static Text t;
@@ -43,11 +32,8 @@ public class Main extends Application {
 
         Player player = new Player();
         player.setImage(space);
-<<<<<<< HEAD
         gameWorld.setPlayer(player);
-=======
 
->>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
         t = new Text("Amount of\nlives left: " + player.numLives());
         t.setFill(Color.WHITE);
         

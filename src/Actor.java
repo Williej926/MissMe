@@ -6,10 +6,10 @@ import javafx.scene.image.ImageView;
 public abstract class Actor extends  ImageView{
     public abstract void act(long now);
     public double getHeight() {
-        return this.getFitHeight();
+        return this.getLayoutBounds().getHeight();
     }
     public double getWidth() {
-        return this.getFitWidth();
+        return this.getLayoutBounds().getWidth();
     }
     public void move(double dx, double dy) {
         setX(getX()+dx);

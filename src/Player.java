@@ -6,12 +6,7 @@ import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-=======
 import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
-
-public class Player extends Actor{
->>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
 
 public class Player extends Actor{
 	private boolean gameOver = false;
@@ -119,15 +114,12 @@ public class Player extends Actor{
 		}
 		if(this.amountOfLives == 0) {
 			//Platform.exit();
-<<<<<<< HEAD
 //			if(getWorld() instanceof GameWorld) {
 //				((GameWorld) getWorld()).gameOver();
 //			}
 			gameOver = true;
-=======
 		
 			
->>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
 		}
 	}
 

@@ -1,13 +1,13 @@
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
-import javafx.animation.AnimationTimer;
+import javafx.application.Application;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
 
 public class GameWorld extends World{
 	private static long prev = 0;
@@ -15,20 +15,23 @@ public class GameWorld extends World{
 	private static final double ORIGINAL_FACTOR = 2.3;
 	private static long diff = (long) (1e9);
 	private int points = 0;
-<<<<<<< HEAD
 	private Player player;
-=======
->>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
+
+	private long prevLong;
+	private boolean checker = true;
+	
 	public GameWorld(int width) {
 		this.setWidth(width);
 	}
 
 	private static int counter = 0;
 
+	
+	
 	public void act(long now) {
 
 		//System.out.println(counter);
-
+		
 		ArrayList<Node> deletes = new ArrayList<Node>();
 		for (Node n : getChildren()) {
 			if (n instanceof Actor){
@@ -78,10 +81,17 @@ public class GameWorld extends World{
 				remove(n);
 			}
 		}
+		
 		if(player.isDead()) {
-			getChildren().add(new ImageView(new Image("gameOver.png")));
+			if(checker) {
+				prevLong = now;
+				gameOver();
+				checker = false;
+			}
+			
+			
 		}
-		if (now-prev>=diff/factor) {
+		if (now-prev>=diff/factor && checker) {
 			double randY = Math.random()*getHeight();
 			boolean side = Math.random()<0.5;
 			if(side) {
@@ -131,32 +141,39 @@ public class GameWorld extends World{
 			}
 		}
 	}
-	
+
 	public static void setFactor(double x) {
 		factor = x;
 	}
-	
+
 	public static double getFactor() {
 		return factor;
 	}
-	
+
 	public static double getOrignalFactor() {
 		return ORIGINAL_FACTOR;
 	}
 	public int getPoints() {
 		return this.points;
 	}
-	
+
 	public void gameOver() {
-<<<<<<< HEAD
-		getChildren().add(new ImageView(new Image("gameOver.png")));
+		Image i = new Image("gameOver.png");
+		ImageView gameOver = new ImageView(i);
+		gameOver.setScaleX(0.5);
+		gameOver.setScaleY(0.5);
+
+		getChildren().add(gameOver);
+		
+		
+		//System.exit(0);
+		
 	}
+	
 	public void setPlayer(Player p) {
 		player = p;
 	}
 
-=======
-	}
-	}
->>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
 }
+
+
