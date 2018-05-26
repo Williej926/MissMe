@@ -15,7 +15,10 @@ public class GameWorld extends World{
 	private static final double ORIGINAL_FACTOR = 2.3;
 	private static long diff = (long) (1e9);
 	private int points = 0;
+<<<<<<< HEAD
 	private Player player;
+=======
+>>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
 	public GameWorld(int width) {
 		this.setWidth(width);
 	}
@@ -145,10 +148,15 @@ public class GameWorld extends World{
 	}
 	
 	public void gameOver() {
+<<<<<<< HEAD
 		getChildren().add(new ImageView(new Image("gameOver.png")));
 	}
 	public void setPlayer(Player p) {
 		player = p;
 	}
 
+=======
+	}
+	}
+>>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
 }

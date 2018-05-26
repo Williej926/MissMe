@@ -43,7 +43,11 @@ public class Main extends Application {
 
         Player player = new Player();
         player.setImage(space);
+<<<<<<< HEAD
         gameWorld.setPlayer(player);
+=======
+
+>>>>>>> 1f17870c6908c2b9e9d23f7a06e99190f3912292
         t = new Text("Amount of\nlives left: " + player.numLives());
         t.setFill(Color.WHITE);
         
