@@ -21,7 +21,9 @@ public class Player extends Actor{
 	ArrayList<Node> add =  new ArrayList<>();
 
 	@Override
-	public void act(long now) {		
+	public void act(long now) {	
+		GameWorld gw = (GameWorld) getWorld();
+		Score s = gw.getS();
 		if(InvincibleCounter==0) {
 			System.out.println("Not invincible");
 			isInvincible = false;
@@ -44,14 +46,17 @@ public class Player extends Actor{
 		if(obstacle != null) {
 			if(isInvincible) {
 				if(obstacle.getClass() == Obstacles.class) {
+					s.setScore(s.getScore()+1);
 					System.out.println("Although I got hit, i am currently invincible!");        		
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == InvinciblePowerUp.class) {
+					s.setScore(s.getScore()+1);
 					delete.add(obstacle);
 					InvincibleCounter+=500;
 				}
 				if(obstacle.getClass() == TimeSlowPowerUp.class) {
+					s.setScore(s.getScore()+1);
 					System.out.println("I slowed down time");
 					if(timeSlowedCounter<0) {
 						timeSlowedCounter = 0;
@@ -71,6 +76,7 @@ public class Player extends Actor{
 					for(Node a: getWorld().getChildren()) {
 						if(((Object) a).getClass() == Obstacles.class) {
 							delete.add(a);
+							s.setScore(s.getScore()+1);
 						}
 					}
 				}
@@ -78,12 +84,14 @@ public class Player extends Actor{
 			}
 			else {
 				if(obstacle.getClass() == Obstacles.class) {
+					s.setScore(s.getScore()-1);
 					System.out.println("-1 Life");
 					amountOfLives--;
 					Main.getT().setText("Amount of\nlives left: " + amountOfLives);
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == InvinciblePowerUp.class) {
+					s.setScore(s.getScore()+1);
 					System.out.println("I am invincible");
 					isInvincible = true;
 					InvincibleCounter = 0;
@@ -92,6 +100,7 @@ public class Player extends Actor{
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == TimeSlowPowerUp.class) {
+					s.setScore(s.getScore()+1);
 					System.out.println("I slowed down time");
 					timeSlowedCounter = 0;
 					timeSlowedCounter += 700;
@@ -106,6 +115,7 @@ public class Player extends Actor{
 					for(Node a: getWorld().getChildren()) {
 						if(((Node) a).getClass() == Obstacles.class) {
 							delete.add(a);
+							s.setScore(s.getScore()+1);
 						}
 					}
 				}

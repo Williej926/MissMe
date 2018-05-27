@@ -12,8 +12,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 public class Main extends Application {
 
-	public static Text t;
-		
+	private static Text t;
+	
     @Override
     public void start(Stage primaryStage) throws Exception{
         BorderPane bp = new BorderPane();
@@ -39,6 +39,8 @@ public class Main extends Application {
         
         Rectangle rect = new Rectangle(60, 33);
         rect.setFill(Color.BLACK);
+        
+       
 
         gameWorld.setOnMouseMoved(new EventHandler<MouseEvent>() {
         
@@ -64,4 +66,6 @@ public class Main extends Application {
     public static Text getT() {
     	return t;
     }
+    
+    
 }

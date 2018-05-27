@@ -19,19 +19,25 @@ public class GameWorld extends World{
 
 	private long prevLong;
 	private boolean checker = true;
-	
+
+	private Score s;
+
 	public GameWorld(int width) {
 		this.setWidth(width);
+		s = new Score();
+		s.setX(50);
+		s.setY(100);
+		this.getChildren().add(s);
 	}
 
 	private static int counter = 0;
 
-	
-	
+
+
 	public void act(long now) {
 
 		//System.out.println(counter);
-		
+
 		ArrayList<Node> deletes = new ArrayList<Node>();
 		for (Node n : getChildren()) {
 			if (n instanceof Actor){
@@ -81,15 +87,15 @@ public class GameWorld extends World{
 				remove(n);
 			}
 		}
-		
+
 		if(player.isDead()) {
 			if(checker) {
 				prevLong = now;
 				gameOver();
 				checker = false;
 			}
-			
-			
+
+
 		}
 		if (now-prev>=diff/factor && checker) {
 			double randY = Math.random()*getHeight();
@@ -164,12 +170,16 @@ public class GameWorld extends World{
 		gameOver.setScaleY(0.5);
 
 		getChildren().add(gameOver);
-		
-		
+
+
 		//System.exit(0);
-		
+
 	}
-	
+
+	public Score getS() {
+		return s;
+	}
+
 	public void setPlayer(Player p) {
 		player = p;
 	}
