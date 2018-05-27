@@ -121,7 +121,7 @@ public class GameWorld extends World{
 			counter++;
 			if(counter==num) {
 				Random rand = new Random();
-				int a = rand.nextInt(3);
+				int a = rand.nextInt(4);
 				if(a==0) {
 					TimeSlowPowerUp tspu = new TimeSlowPowerUp();
 					tspu.setX(0);
@@ -139,6 +139,12 @@ public class GameWorld extends World{
 					dopu.setX(0);
 					dopu.setY(Math.random()*(this.getHeight()/1.35));
 					this.getChildren().add(dopu);
+				}
+				else if(a==3) {
+					IncreaseLivePowerUp ilpu = new IncreaseLivePowerUp();
+					ilpu.setX(0);
+					ilpu.setY(Math.random()*(this.getHeight()/1.35));
+					this.getChildren().add(ilpu);
 				}
 				counter = 0;
 				tester = true;

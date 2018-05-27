@@ -80,6 +80,13 @@ public class Player extends Actor{
 						}
 					}
 				}
+				if(obstacle.getClass() == IncreaseLivePowerUp.class) {
+					s.setScore(s.getScore()+1);
+					System.out.println("+1 up!");
+					delete.add(obstacle);
+					amountOfLives++;
+					Main.getT().setText("Amount of\nlives left: " + amountOfLives);
+				}
 
 			}
 			else {
@@ -118,6 +125,13 @@ public class Player extends Actor{
 							s.setScore(s.getScore()+1);
 						}
 					}
+				}
+				if(obstacle.getClass() == IncreaseLivePowerUp.class) {
+					s.setScore(s.getScore()+1);
+					System.out.println("+1 up!");
+					delete.add(obstacle);
+					amountOfLives++;
+					Main.getT().setText("Amount of\nlives left: " + amountOfLives);
 				}
 			}
 
