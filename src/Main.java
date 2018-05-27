@@ -12,8 +12,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 public class Main extends Application {
 
-	
-	
+
+	private static Text t;
 	
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -28,7 +28,10 @@ public class Main extends Application {
         GameWorld gameWorld = new GameWorld(1000);
         bp.setCenter(gameWorld);
 
+        Rectangle rect = new Rectangle(60, 33);
+        rect.setFill(Color.BLACK);
         
+
 
         gameWorld.gameStart();
         gameWorld.start();
@@ -38,6 +41,11 @@ public class Main extends Application {
     }    
     public static void main(String[] args) {
         launch(args);
+    }
+
+
+    public static Text getT() {
+    	return t;
     }
 
     

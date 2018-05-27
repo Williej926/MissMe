@@ -39,31 +39,52 @@ public class GameWorld extends World{
 	
 	private long prevLong;
 	private boolean checker = true;
+
+	boolean tester = true;
 	
+	private int num;
+	
+	private Score s;
+
 	public GameWorld(int width) {
 		this.setWidth(width);
+		s = new Score();
+		s.setX(50);
+		s.setY(100);
+		this.getChildren().add(s);
 	}
 
 	private static int counter = 0;
-	
+
+
+
+
 	public void act(long now) {
 
 		//System.out.println(counter);
 		if (gameState == GAME_SCREEN) {
-			ArrayList<Node> deletes = new ArrayList<Node>();
-			for (Node n : getChildren()) {
-				if (n instanceof Actor){
-					if (((Actor) n).getX() > getWidth()) {
-						//System.out.println("deleted");
-						//((Actor) n).getWorld().remove(((Actor) n));
-						deletes.add(n);
-					} else if (((Actor) n).getX() < 0) {
-						//System.out.println("deleted");
-						//((Actor) n).getWorld().remove(((Actor) n));
-	
-	
-						deletes.add(n);
-					}
+			if(tester) {
+				setNum();
+				tester = false;
+			}
+		
+		//System.out.println(counter);
+
+		ArrayList<Node> deletes = new ArrayList<Node>();
+		
+		for (Node n : getChildren()) {
+			if (n instanceof Actor){
+				if (((Actor) n).getX() > getWidth()) {
+					//System.out.println("deleted");
+					//((Actor) n).getWorld().remove(((Actor) n));
+					deletes.add(n);
+				} else if (((Actor) n).getX() < 0) {
+					//System.out.println("deleted");
+					//((Actor) n).getWorld().remove(((Actor) n));
+
+
+					deletes.add(n);
+
 				}
 				if (n instanceof Obstacles){
 					if (((Obstacles) n).getCenterX() > getWidth()) {
@@ -102,54 +123,63 @@ public class GameWorld extends World{
 				gameState = GAME_OVER;
 				
 			}
-			for(Node n:deletes) {
-				if(n instanceof Actor) {
-					if(n != null) {
-						((Actor) n).getWorld().remove(((Actor) n));
-					}
-				}
-				if(n instanceof Obstacles) {
-					remove(n);
+			
+			if(n instanceof Obstacles) {
+				remove(n);
+			}
+		}
+		for(Node n:deletes) {
+			if(n instanceof Actor) {
+				if(n != null) {
+					((Actor) n).getWorld().remove(((Actor) n));
 				}
 			}
-			
-			
-			if (now-prev>=diff/factor && checker) {
-				double randY = Math.random()*getHeight();
-				boolean side = Math.random()<0.5;
-				if(side) {
-	
-	
+
+			if(n instanceof Obstacles) {
+				remove(n);
+			}
+
+		}
+		
+		if (now-prev>=diff/factor && checker) {
+			double randY = Math.random()*getHeight();
+			boolean side = Math.random()<0.5;
+			if(side) {
+
+
+			}
+
+			//do something
+			prev = now;
+
+			//every 10 asteroids one powerUp
+			counter++;
+			if(counter==num) {
+				Random rand = new Random();
+				int a = rand.nextInt(4);
+				if(a==0) {
+					TimeSlowPowerUp tspu = new TimeSlowPowerUp();
+					tspu.setX(0);
+					tspu.setY(Math.random()*(this.getHeight()/1.35));
+					this.getChildren().add(tspu);
+
+				} else if(a==1){
+					InvinciblePowerUp ipu = new InvinciblePowerUp();
+					ipu.setX(0);
+					ipu.setY(Math.random()*(this.getHeight()/1.35));
+					this.getChildren().add(ipu);
 				}
-	
-				//do something
-				prev = now;
-	
-				//every 10 asteroids one powerUp
-				counter++;
-	
-				if(counter==10) {
-					Random rand = new Random();
-					int a = rand.nextInt(3);
-					if(a==0) {
-						TimeSlowPowerUp tspu = new TimeSlowPowerUp();
-						tspu.setX(0);
-						tspu.setY(Math.random()*(this.getHeight()/1.35));
-						this.getChildren().add(tspu);
-					}
-					else if(a==1){
-						InvinciblePowerUp ipu = new InvinciblePowerUp();
-						ipu.setX(0);
-						ipu.setY(Math.random()*(this.getHeight()/1.35));
-						this.getChildren().add(ipu);
-					}
-					else if(a==2){
-						DestroyObstaclesPowerUp dopu = new DestroyObstaclesPowerUp();
-						dopu.setX(0);
-						dopu.setY(Math.random()*(this.getHeight()/1.35));
-						this.getChildren().add(dopu);
-					}
-					counter = 0;
+				else if(a==2){
+					DestroyObstaclesPowerUp dopu = new DestroyObstaclesPowerUp();
+					dopu.setX(0);
+					dopu.setY(Math.random()*(this.getHeight()/1.35));
+					this.getChildren().add(dopu);
+				}
+				else if(a==3) {
+					IncreaseLivePowerUp ilpu = new IncreaseLivePowerUp();
+					ilpu.setX(0);
+					ilpu.setY(Math.random()*(this.getHeight()/1.35));
+					this.getChildren().add(ilpu);
 				}
 				else {
 					Obstacles ob = new Obstacles();
@@ -162,10 +192,19 @@ public class GameWorld extends World{
 					//                c.setCenterY((Math.random()*(this.getHeight()))-this.getHeight()/2);
 					this.getChildren().add(ob);
 				}
+				counter = 0;
+				tester = true;
 			}
 		}
+		}
+			
 	}
 
+	public void setNum() {
+		num = (int)(Math.random()*15)+10;
+
+	}
+	
 	public static void setFactor(double x) {
 		factor = x;
 	}
@@ -242,6 +281,7 @@ public class GameWorld extends World{
 		gameOver = new ImageView(i);
 		gameOver.setScaleX(0.5);
 		gameOver.setScaleY(0.5);
+
 		gameOver.setX(getScene().getWidth()/2 - gameOver.boundsInParentProperty().getValue().getWidth());
 		gameState = GAME_OVER;
 		
@@ -251,12 +291,25 @@ public class GameWorld extends World{
 		getChildren().remove(player);
 		getChildren().remove(t);
 		
+
+
+		getChildren().add(gameOver);
+
+
+
 		//System.exit(0);
-		
+
 	}
+
 	public static Text getT() {
     	return t;
     }
+
+
+	public Score getS() {
+		return s;
+	}
+
 	public void setPlayer(Player p) {
 		player = p;
 	}
