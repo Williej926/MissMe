@@ -80,7 +80,7 @@ public class Player extends Actor{
 				if(obstacle.getClass() == Obstacles.class) {
 					System.out.println("-1 Life");
 					amountOfLives--;
-					Main.getT().setText("Amount of\nlives left: " + amountOfLives);
+					GameWorld.getT().setText("Amount of\nlives left: " + amountOfLives);
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == InvinciblePowerUp.class) {
