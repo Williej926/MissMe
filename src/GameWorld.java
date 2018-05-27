@@ -20,6 +20,10 @@ public class GameWorld extends World{
 	private long prevLong;
 	private boolean checker = true;
 
+	boolean tester = true;
+	
+	private int num;
+	
 	private Score s;
 
 	public GameWorld(int width) {
@@ -36,6 +40,11 @@ public class GameWorld extends World{
 
 	public void act(long now) {
 
+		if(tester) {
+			setNum();
+			tester = false;
+		}
+		
 		//System.out.println(counter);
 
 		ArrayList<Node> deletes = new ArrayList<Node>();
@@ -110,8 +119,7 @@ public class GameWorld extends World{
 
 			//every 10 asteroids one powerUp
 			counter++;
-
-			if(counter==10) {
+			if(counter==num) {
 				Random rand = new Random();
 				int a = rand.nextInt(3);
 				if(a==0) {
@@ -133,6 +141,7 @@ public class GameWorld extends World{
 					this.getChildren().add(dopu);
 				}
 				counter = 0;
+				tester = true;
 			}
 			else {
 				Obstacles ob = new Obstacles();
@@ -148,6 +157,11 @@ public class GameWorld extends World{
 		}
 	}
 
+	public void setNum() {
+		num = (int)(Math.random()*15)+10;
+
+	}
+	
 	public static void setFactor(double x) {
 		factor = x;
 	}
