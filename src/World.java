@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 
 import javafx.animation.AnimationTimer;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+
 public abstract class World extends Pane {
     private AnimationTimer timer;
     public World() {

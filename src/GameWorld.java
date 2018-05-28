@@ -302,6 +302,20 @@ public class GameWorld extends World{
 				t.setLayoutY(player.getY() + 1.2*player.getImage().getHeight());
 			}
 		});
+		
+		setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+
+				player.setX(event.getX() - player.getImage().getWidth()/2);
+				player.setY(event.getY() - player.getImage().getHeight()/2);
+				rect.setLayoutX(event.getX() - player.getImage().getWidth()/2.8);
+				rect.setLayoutY(player.getY() + 1.1*player.getImage().getHeight());
+				t.setLayoutX(event.getX() - player.getImage().getWidth()/3);
+				t.setLayoutY(player.getY() + 1.2*player.getImage().getHeight());
+			}
+		});
+
 		getChildren().addAll(player, rect, t);
 
 	}

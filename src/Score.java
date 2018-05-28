@@ -1,5 +1,3 @@
-import com.sun.prism.paint.Color;
-
 import javafx.scene.text.Text;
 
 public class Score extends Text{
