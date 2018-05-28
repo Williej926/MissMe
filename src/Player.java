@@ -49,13 +49,13 @@ public class Player extends Actor{
 		}
 
 		if(InvincibleCounter==0) {
-			System.out.println("Not invincible");
+			////System.out.println("Not invincible");
 			isInvincible = false;
 			this.setImage(new Image("williejiang.gif"));
 		}
 
 		if(timeSlowedCounter==0) {
-			System.out.println("Time back to normal");
+			//System.out.println("Time back to normal");
 			GameWorld.setFactor(GameWorld.getOriginalFactor());
 			Obstacles.setDX(Obstacles.returnOriginal());
 			PowerUp.setDX(PowerUp.returnOriginal());
@@ -71,7 +71,7 @@ public class Player extends Actor{
 			if(isInvincible) {
 				if(obstacle.getClass() == Obstacles.class) {
 					s.setScore(s.getScore()+1);
-					System.out.println("Although I got hit, i am currently invincible!");        		
+					//System.out.println("Although I got hit, i am currently invincible!");        		
 					delete.add(obstacle);
 					String uriString = Player.class.getResource("laser.wav").toString();
 
@@ -86,7 +86,7 @@ public class Player extends Actor{
 				}
 				if(obstacle.getClass() == TimeSlowPowerUp.class) {
 					s.setScore(s.getScore()+1);
-					System.out.println("I slowed down time");
+					//System.out.println("I slowed down time");
 					if(timeSlowedCounter<0) {
 						timeSlowedCounter = 0;
 						timeSlowedCounter += 700;
@@ -101,7 +101,7 @@ public class Player extends Actor{
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
-					System.out.println("I kill all the bad guys h33h33");
+					//System.out.println("I kill all the bad guys h33h33");
 					delete.add(obstacle);
 					for(Node a: getWorld().getChildren()) {
 						if(((Object) a).getClass() == Obstacles.class) {
@@ -112,7 +112,7 @@ public class Player extends Actor{
 				}
 				if(obstacle.getClass() == IncreaseLivePowerUp.class) {
 					s.setScore(s.getScore()+1);
-					System.out.println("+1 up!");
+					//System.out.println("+1 up!");
 					delete.add(obstacle);
 					amountOfLives++;
 					gw.getT().setText("Amount of\nlives left: " + amountOfLives);
@@ -122,7 +122,7 @@ public class Player extends Actor{
 			else {
 				if(obstacle.getClass() == Obstacles.class) {
 					s.setScore(s.getScore()-1);
-					System.out.println("-1 Life");
+					//System.out.println("-1 Life");
 					amountOfLives--;
 					GameWorld.getT().setText("Amount of\nlives left: " + amountOfLives);
 					delete.add(obstacle);
@@ -133,7 +133,7 @@ public class Player extends Actor{
 				}
 				if(obstacle.getClass() == InvinciblePowerUp.class) {
 					s.setScore(s.getScore()+1);
-					System.out.println("I am invincible");
+					//System.out.println("I am invincible");
 					isInvincible = true;
 					InvincibleCounter = 0;
 					InvincibleCounter+=500;
@@ -142,7 +142,7 @@ public class Player extends Actor{
 				}
 				if(obstacle.getClass() == TimeSlowPowerUp.class) {
 					s.setScore(s.getScore()+1);
-					System.out.println("I slowed down time");
+					//System.out.println("I slowed down time");
 					if(timeSlowedCounter<0) {
 						timeSlowedCounter = 0;
 						timeSlowedCounter += 700;
@@ -156,7 +156,7 @@ public class Player extends Actor{
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
-					System.out.println("I kill all the bad guys h33h33");
+					//System.out.println("I kill all the bad guys h33h33");
 					delete.add(obstacle);
 					for(Node a: getWorld().getChildren()) {
 						if(((Node) a).getClass() == Obstacles.class) {
@@ -167,7 +167,7 @@ public class Player extends Actor{
 				}
 				if(obstacle.getClass() == IncreaseLivePowerUp.class) {
 					s.setScore(s.getScore()+1);
-					System.out.println("+1 up!");
+					//System.out.println("+1 up!");
 					delete.add(obstacle);
 					amountOfLives++;
 
