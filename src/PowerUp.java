@@ -2,7 +2,8 @@
 public class PowerUp extends Actor {
 
     private static double moveDistance = 10;
-    private static final double ORIGINAL_DX = 10;
+    private static final double TEST = 10;
+    private static double ORIGINAL_DX = 10;
 
     
 	public PowerUp() {
@@ -28,6 +29,15 @@ public class PowerUp extends Actor {
     
     public static double getDX() {
     	return  moveDistance;
+    }
+    
+    public static void restart() {
+    	moveDistance = TEST;
+    	ORIGINAL_DX = TEST;
+    }
+    
+    public static void setOG(double x) {
+    	ORIGINAL_DX = x;
     }
     
     public static double returnOriginal() {

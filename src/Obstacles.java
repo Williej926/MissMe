@@ -5,7 +5,8 @@ import javafx.scene.shape.Circle;
 
 public class Obstacles extends Circle{
     private static double moveDistance = 5;
-    private static final double ORIGINAL_DX = 5;
+    private static final double TEST = 5;
+    private static double ORIGINAL_DX = 5;
 
 
 	public Obstacles() {
@@ -35,6 +36,15 @@ public class Obstacles extends Circle{
 
     public static double getDX() {
     	return  moveDistance;
+    }
+    
+    public static void restart() {
+    	moveDistance = TEST;
+    	ORIGINAL_DX = TEST;
+    }
+
+    public static void setOG(double x) {
+    	ORIGINAL_DX = x;
     }
 
     public static double returnOriginal() {

@@ -1,12 +1,10 @@
-import javafx.application.Application;
-import javafx.application.Platform;
+
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 import java.util.ArrayList;
-
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Text;
 
 public class Player extends Actor{
 	private boolean gameOver = false;
@@ -17,13 +15,39 @@ public class Player extends Actor{
 
 	private int amountOfLives = 3;
 
+	boolean firstLevel = true;
+	boolean secondLevel = true;
+
 	ArrayList<Node> delete =  new ArrayList<>();
 	ArrayList<Node> add =  new ArrayList<>();
 
+	
+	
 	@Override
 	public void act(long now) {	
+		
 		GameWorld gw = (GameWorld) getWorld();
 		Score s = gw.getS();
+
+		if(s.getScore()>=10 && firstLevel) {
+			s.incrementLevel();
+			GameWorld.incrementNextLevel();
+			Obstacles.setDX(Obstacles.returnOriginal()*1.5);
+			Obstacles.setOG(Obstacles.getDX());
+			PowerUp.setDX(PowerUp.getDX()*1.5);
+			PowerUp.setOG(PowerUp.getDX());
+			firstLevel = false;
+		}
+		if(s.getScore()>=35 && secondLevel && !firstLevel) {
+			s.incrementLevel();
+			GameWorld.incrementNextLevel();
+			Obstacles.setDX(Obstacles.returnOriginal()*1.5);
+			Obstacles.setOG(Obstacles.getDX());
+			PowerUp.setDX(PowerUp.getDX()*1.5);
+			PowerUp.setOG(PowerUp.getDX());
+			secondLevel = false;
+		}
+
 		if(InvincibleCounter==0) {
 			System.out.println("Not invincible");
 			isInvincible = false;
@@ -32,7 +56,7 @@ public class Player extends Actor{
 
 		if(timeSlowedCounter==0) {
 			System.out.println("Time back to normal");
-			GameWorld.setFactor(GameWorld.getOrignalFactor());
+			GameWorld.setFactor(GameWorld.getOriginalFactor());
 			Obstacles.setDX(Obstacles.returnOriginal());
 			PowerUp.setDX(PowerUp.returnOriginal());
 		}
@@ -49,6 +73,11 @@ public class Player extends Actor{
 					s.setScore(s.getScore()+1);
 					System.out.println("Although I got hit, i am currently invincible!");        		
 					delete.add(obstacle);
+					String uriString = Player.class.getResource("laser.wav").toString();
+
+					Media media = new Media(uriString);
+					MediaPlayer player = new MediaPlayer(media);
+					player.play();
 				}
 				if(obstacle.getClass() == InvinciblePowerUp.class) {
 					s.setScore(s.getScore()+1);
@@ -61,13 +90,14 @@ public class Player extends Actor{
 					if(timeSlowedCounter<0) {
 						timeSlowedCounter = 0;
 						timeSlowedCounter += 700;
+						GameWorld.setFactor(GameWorld.getFactor()/2);
+						Obstacles.setDX(Obstacles.getDX()/2);
+						PowerUp.setDX(PowerUp.getDX()/2);
 					}
 					else {
 						timeSlowedCounter += 700;
 					}
-					GameWorld.setFactor(GameWorld.getFactor()/2);
-					Obstacles.setDX(Obstacles.getDX()/2);
-					PowerUp.setDX(PowerUp.getDX()/2);
+					
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
@@ -85,7 +115,7 @@ public class Player extends Actor{
 					System.out.println("+1 up!");
 					delete.add(obstacle);
 					amountOfLives++;
-					Main.getT().setText("Amount of\nlives left: " + amountOfLives);
+					gw.getT().setText("Amount of\nlives left: " + amountOfLives);
 				}
 
 			}
@@ -96,6 +126,10 @@ public class Player extends Actor{
 					amountOfLives--;
 					GameWorld.getT().setText("Amount of\nlives left: " + amountOfLives);
 					delete.add(obstacle);
+					String uriString = Player.class.getResource("buzz.wav").toString();
+					Media media = new Media(uriString);
+					MediaPlayer player = new MediaPlayer(media);
+					player.play();
 				}
 				if(obstacle.getClass() == InvinciblePowerUp.class) {
 					s.setScore(s.getScore()+1);
@@ -109,11 +143,16 @@ public class Player extends Actor{
 				if(obstacle.getClass() == TimeSlowPowerUp.class) {
 					s.setScore(s.getScore()+1);
 					System.out.println("I slowed down time");
-					timeSlowedCounter = 0;
-					timeSlowedCounter += 700;
-					GameWorld.setFactor(GameWorld.getFactor()/2);
-					Obstacles.setDX(Obstacles.getDX()/2);
-					PowerUp.setDX(PowerUp.getDX()/2);
+					if(timeSlowedCounter<0) {
+						timeSlowedCounter = 0;
+						timeSlowedCounter += 700;
+						GameWorld.setFactor(GameWorld.getFactor()/2);
+						Obstacles.setDX(Obstacles.getDX()/2);
+						PowerUp.setDX(PowerUp.getDX()/2);
+					}
+					else {
+						timeSlowedCounter += 700;
+					}
 					delete.add(obstacle);
 				}
 				if(obstacle.getClass() == DestroyObstaclesPowerUp.class) {
@@ -131,19 +170,20 @@ public class Player extends Actor{
 					System.out.println("+1 up!");
 					delete.add(obstacle);
 					amountOfLives++;
-					Main.getT().setText("Amount of\nlives left: " + amountOfLives);
+
+					gw.getT().setText("Amount of\nlives left: " + amountOfLives);
 				}
 			}
 
 		}
 		if(this.amountOfLives == 0) {
 			//Platform.exit();
-//			if(getWorld() instanceof GameWorld) {
-//				((GameWorld) getWorld()).gameOver();
-//			}
+			//			if(getWorld() instanceof GameWorld) {
+			//				((GameWorld) getWorld()).gameOver();
+			//			}
 			gameOver = true;
-		
-			
+
+
 		}
 	}
 

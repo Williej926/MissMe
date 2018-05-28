@@ -6,10 +6,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 public class Main extends Application {
 
 
@@ -18,6 +21,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
     	//GAME_SCREEN ELEMENTS
+    	
     	
     	
         BorderPane bp = new BorderPane();
@@ -31,7 +35,7 @@ public class Main extends Application {
         Rectangle rect = new Rectangle(60, 33);
         rect.setFill(Color.BLACK);
         
-
+        
 
         gameWorld.gameStart();
         gameWorld.start();
