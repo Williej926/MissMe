@@ -88,13 +88,14 @@ public class GameWorld extends World{
 						//System.out.println("deleted");
 						//((Actor) n).getWorld().remove(((Actor) n));
 						deletes.add(n);
-					} else if (((Actor) n).getX() < 0) {
-						//System.out.println("deleted");
-						//((Actor) n).getWorld().remove(((Actor) n));
-
-
-						deletes.add(n);
-					}
+					} 
+//					else if (((Actor) n).getX() < 0) {
+//						//System.out.println("deleted");
+//						//((Actor) n).getWorld().remove(((Actor) n));
+//
+//
+//						deletes.add(n);
+//					}
 				}
 				if (n instanceof Obstacles){
 					if (((Obstacles) n).getCenterX() > getWidth()) {
