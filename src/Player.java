@@ -1,10 +1,10 @@
 
+import java.util.ArrayList;
+
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-
-import java.util.ArrayList;
 
 public class Player extends Actor{
 	private boolean gameOver = false;
